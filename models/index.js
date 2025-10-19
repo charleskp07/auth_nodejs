@@ -30,6 +30,10 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.users = require('./User.js')(sequelize, DataTypes);
+db.user_datas = require('./UserData.js')(sequelize, DataTypes);
+
+db.user_datas.belongsTo(db.users);
+db.users.hasOne(db.user_datas)
 
 
 module.exports = db

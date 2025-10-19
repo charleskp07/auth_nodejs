@@ -3,10 +3,15 @@ const appRouter = express.Router();
 const authRouter = require('../modules/authentication/authentication.route');
 const authValidateToken = require("../modules/middlewares/token.middleware");
 const db = require('../models/index.js');
+const fileuploadRouter = require("../modules/fileupload/fileupload.route.js");
 
 const User = db.users;
 
 appRouter.use('/auth', authRouter);
+appRouter.use('/user' , fileuploadRouter)
+
+
+
 //route protégé 
 appRouter.get("/user/:id", authValidateToken, (req, res) => {
 
